@@ -29,6 +29,10 @@ class DatabaseSeeder extends Seeder
             'name' => 'Manager'
         ]);
 
+        $vip_role = \App\Models\Role::factory()->create([
+            'name' => 'Vip'
+        ]);
+
         // \App\Models\User::factory()->create([
         //     'name' => 'Test User',
         //     'email' => 'test@example.com',
