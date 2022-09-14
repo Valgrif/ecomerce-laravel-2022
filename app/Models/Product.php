@@ -10,4 +10,8 @@ class Product extends Model
     use HasFactory;
 
     protected $guarded = []; //Lista de cosas que NO se pueden asignar con create, no especificar nada significa que todo es fillable
+
+    public function orders(){
+        return $this->belongsToMany(Order::class);
+    }
 }
