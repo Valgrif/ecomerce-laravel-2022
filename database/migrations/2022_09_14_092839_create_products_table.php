@@ -15,6 +15,13 @@ return new class extends Migration
     {
         Schema::create('products', function (Blueprint $table) {
             $table->id();
+            $table->string('name');
+            $table->string('slug');
+            $table->string('short_description');
+            $table->text('content');
+            $table->string('picture');
+            $table->float('price', 10, 2, true); //El true es para especificar que es sin signo, por lo que no habrá precios negativos
+            $table->integer('stock', false, true); //SIn autoincremente y sin numero negativo
             $table->timestamps();
         });
     }
