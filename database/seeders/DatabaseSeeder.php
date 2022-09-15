@@ -54,7 +54,24 @@ class DatabaseSeeder extends Seeder
 
         //Produtcts and Orders
 
-        \App\Models\Product::factory(30)->create();
+        $categories = \App\Models\Category::factory(20)->create();
+
+        foreach ($categories as $category){
+            \App\Models\Product::factory(random_int(1,5))->create([
+                "category_id" => $category->id,
+            ]);
+        }
+
+        $tags = \App\Models\Tag::factory(40)->create();
+
+        $products = \App\Models\Product::all();
+
+        foreach ($products as $product){
+            $product_tags = \App\Models\Tag::inRandomOrder()->limit(random_int(1,5))->get();
+            foreach ($product_tags as $product_tag){
+                $product ->tags()->attach($product_tag);
+            }
+        }
 
         $users = \App\Models\Role::where('name', 'Cliente')->get()->first()->users;
 
@@ -74,6 +91,9 @@ class DatabaseSeeder extends Seeder
                 }
                 $order->save();
             }
+
         }
+
+
     }
 }

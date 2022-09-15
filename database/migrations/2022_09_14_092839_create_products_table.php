@@ -22,6 +22,7 @@ return new class extends Migration
             $table->string('picture');
             $table->float('price', 10, 2, true); //El true es para especificar que es sin signo, por lo que no habrá precios negativos
             $table->integer('stock', false, true); //SIn autoincremente y sin numero negativo
+            $table->foreignId('category_id');
             $table->timestamps();
         });
     }
