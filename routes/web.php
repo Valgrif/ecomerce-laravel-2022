@@ -20,6 +20,10 @@ Route::get('/', function () {
     ]);
 });
 
+Route::get('/admin', function (){
+    return view('admin-page');
+});
+
 Route::get('/dashboard', function () {
     return view('dashboard');
 })->middleware(['auth'])->name('dashboard');
