@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\ProductController;
 use Illuminate\Support\Facades\Route;
 use App\Models\Product;
 
@@ -29,4 +30,8 @@ Route::get('/dashboard', function () {
 })->middleware(['auth'])->name('dashboard');
 
 require __DIR__.'/auth.php';
+
+//---------------- ROUTES ADMIN INTERFACE -------------------------------------------------------/
+Route::get('/admin/new-product',[ProductController::class, 'new_form'])->name('new-product-form');
+Route::post('/admin/new-product',[ProductController::class, 'create'])->name('create-product');
 

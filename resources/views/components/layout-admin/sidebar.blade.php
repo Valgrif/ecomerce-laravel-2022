@@ -1,4 +1,4 @@
-<div class="d-flex flex-column flex-shrink-0 p-3 text-bg-dark vh-100 overflow-auto">
+<div class="d-flex flex-column flex-shrink-0 p-3 text-bg-dark vh-100 overflow-auto position-sticky">
     <a href="/" class="d-flex align-items-center mb-3 mb-md-0 me-md-auto text-white text-decoration-none">
         <i class="bi bi-shop m-2"></i> <span class="fs-4"> Control-Panel</span> </a>
     <hr>
