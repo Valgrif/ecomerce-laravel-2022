@@ -1,23 +1,23 @@
 <x-layout>
     <x-layout-admin>
         <h1>Crear un nuevo producto</h1>
-        <x-layout-admin.form-components-errors />
+        <x-layout-admin.form-components.errors />
         <!--NO OLVIDES EL ENCTYPE PARA ARCHIVO Y EL csrf-->
         <form action="{{ route('create-product') }}" method="post" enctype="multipart/form-data">
             @csrf
             <div class="form-floating mb-3">
-                <input class="form-control" type="text" name="name" id="name" placeholder="Nombre del Prodcuto">
+                <input class="form-control" type="text" name="name" id="name" placeholder="Nombre del Producto" value="{{ old('name') }}">
                 <label for="name">Nombre de producto: </label>
             </div>
             <div class="form-floating mb-3">
-                <textarea class="form-control" name="short_description" id="short_description" placeholder="Descripcion Corta"></textarea>
+                <textarea class="form-control" name="short_description" id="short_description" placeholder="Descripcion Corta">{{ old('short_description') }}</textarea>
                 <label for="short_description">Descripción corta: </label>
             </div>
             <div class="row mb-3">
                 <div class="col-12 col-md-6">
                     <!-- COLUMNA IZQ -->
                     <div class="form-floating mb-3">
-                        <textarea class="form-control" style="height: 50rem" name="content" id="content" placeholder="Descripción:"></textarea>
+                        <textarea class="form-control" style="height: 50rem" name="content" id="content" placeholder="Descripción:">{{ old('content') }}</textarea>
                         <label for="content">Descripción:</label>
                     </div>
                 </div>
@@ -30,7 +30,7 @@
                     <div class="input-group mb3">
                         <div class="form-floating">
                             <input class="form-control" type="number" name="price" id="price"
-                                placeholder="Precio:" min="0" step="0.01">
+                                placeholder="Precio:" min="0" step="0.01" value="{{ old('price') }}">
                             <label for="price">Precio:</label>
                         </div>
                         <span class="input-group-text">€</span>
@@ -38,7 +38,7 @@
                     <div class="input-group mb3">
                         <div class="form-floating">
                             <input class="form-control" type="number" name="stock" id="stock"
-                                placeholder="Stock:" min="0">
+                                placeholder="Stock:" min="0" value="{{ old('stock') }}">
                             <label for="stock">Stock:</label>
                         </div>
                         <span class="input-group-text">Uds</span>
@@ -48,7 +48,9 @@
                         <select name="category_id" id="category_id" class="form-select">
                             <option value="">--- Slecciona una categoría ---</option>
                             @foreach ($categories as $category)
-                                <option value="{{ $category->id }}">{{ $category->name }}</option>
+                                <option value="{{ $category->id }}"{{$category->id == old('category_id') ? "selected" : ""}}>
+                                    {{ $category->name }}
+                                </option>
                             @endforeach
                         </select>
                     </div>

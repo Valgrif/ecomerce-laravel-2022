@@ -16,13 +16,9 @@ use App\Models\Product;
 */
 
 Route::get('/', function () {
-    return view('front-page', [
+    return view('public.front-page', [
         'products' => Product::all(),
     ]);
-});
-
-Route::get('/admin', function (){
-    return view('admin-page');
 });
 
 Route::get('/dashboard', function () {
@@ -32,6 +28,11 @@ Route::get('/dashboard', function () {
 require __DIR__.'/auth.php';
 
 //---------------- ROUTES ADMIN INTERFACE -------------------------------------------------------/
+
+Route::get('/admin', function (){
+    return view('admin.front-page');
+})->name('admin-page');
+
 Route::get('/admin/new-product',[ProductController::class, 'new_form'])->name('new-product-form');
 Route::post('/admin/new-product',[ProductController::class, 'create'])->name('create-product');
 
