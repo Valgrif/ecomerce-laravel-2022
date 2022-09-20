@@ -23,7 +23,7 @@
                 <div class="col-12 col-md-6">
                     <!-- COLUMNA DERECHA -->
                     <div class="form-floating mb-3">
-                        <label for="picture" class="form-control">Imagen del Producto:</label>
+                        <label for="picture" class="form-label"></label>
                         <input type="file" class="form-control" name="picture" id="picture">
                     </div>
                     <div class="input-group mb3">
@@ -57,7 +57,7 @@
                             @foreach ($tags as $tag)
                                 <div class="col-6">
                                     <div class="form-check">
-                                        <input class="form-check-input" type="checkbox" name="tags"
+                                        <input class="form-check-input" type="checkbox" name="tags[]"
                                             value="{{ $tag->id }}" id="flexCheckDefault">
                                         <label class="form-check-label" for="tag-{{ $tag->id }}">
                                             {{ $tag->name }}
