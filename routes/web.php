@@ -19,7 +19,7 @@ Route::get('/', function () {
     return view('public.front-page', [
         'products' => Product::all(),
     ]);
-});
+})->name('store');
 
 Route::get('/dashboard', function () {
     return view('dashboard');

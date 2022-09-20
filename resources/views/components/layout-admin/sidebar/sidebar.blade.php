@@ -10,6 +10,11 @@
              'icon' => 'bi bi-plus-square',
              'url' => route('create-product'),
          ],
+         'Usuario' => [
+            'text' => 'Portada',
+            'icon' => 'bi bi-shop',
+            'url' => route('store'),
+         ],
      ];
  @endphp
 
