@@ -3,6 +3,8 @@
         <x-layout-admin.sidebar />
     </div>
     <div class="col-6 col-md-9 col-xl-10 ms-0">
-        {{ $slot }}
+        <div class="me-3">
+            {{ $slot }}
+        </div>
     </div>
 </div>
