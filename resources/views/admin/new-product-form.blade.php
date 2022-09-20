@@ -1,6 +1,7 @@
 <x-layout>
     <x-layout-admin>
         <h1>Crear un nuevo producto</h1>
+        <x-layout-admin.form-components-errors />
         <!--NO OLVIDES EL ENCTYPE PARA ARCHIVO Y EL csrf-->
         <form action="{{ route('create-product') }}" method="post" enctype="multipart/form-data">
             @csrf

@@ -16,7 +16,15 @@ class ProductController extends Controller
     }
 
     public function create(Request $request){
-        dd($request);
+        $validate = $request->validate([
+            'name' => "required|max:255",
+            'short_description' => "required|max:255",
+            'content' => "required",
+            'picture' => "required|image",
+            'price' => "required|numeric|min:0",
+            'stock' => "required|numeric|min:0",
+            'category_id' => "required|exists:category,id"
+        ]);
         return view('/');
     }
 }
