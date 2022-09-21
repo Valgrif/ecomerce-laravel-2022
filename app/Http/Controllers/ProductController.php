@@ -40,6 +40,21 @@ class ProductController extends Controller
 
         Product::create($validated);
 
+        $tags = $request->input('tags');
+
         return redirect(route('admin-page'));
+    }
+
+    public function show($slug){
+        $product = Product::where('slug', $slug)->get()->firstOrFail();
+        $related_products = $product->category->products
+            ->where('id', '!=', $product->id)
+            ->shuffle()
+            ->take(3);  //shufle para "barajarlos" y sacar aleatorios
+
+        return view ('public.single-product',[
+            "product" => $product,
+            "related_products" => $related_products,
+        ]);
     }
 }

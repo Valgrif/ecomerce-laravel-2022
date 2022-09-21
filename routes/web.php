@@ -27,6 +27,10 @@ Route::get('/dashboard', function () {
 
 require __DIR__.'/auth.php';
 
+//---------------- ROUTES PUBLIC ----------------------------------------------------------------/
+
+Route::get('/product/{slug}', [ProductController::class, 'show'])->name('show-product');
+
 //---------------- ROUTES ADMIN INTERFACE -------------------------------------------------------/
 
 Route::get('/admin', function (){
@@ -35,4 +39,3 @@ Route::get('/admin', function (){
 
 Route::get('/admin/new-product',[ProductController::class, 'new_form'])->name('new-product-form');
 Route::post('/admin/new-product',[ProductController::class, 'create'])->name('create-product');
-

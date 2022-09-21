@@ -10,8 +10,8 @@ $price = number_format($product->price, 2, ',', '.');
             <h5 class="card-title">{{ $product->name }}</h5>
             <div class="d-flex justify-content-between align-items-center mt-auto flex-wrap-reverse">
                 <div class="btn-group">
-                    <button type="button" class="btn btn-sm btn-outline-secondary">Ver
-                        mas...</button>
+                    <a href="{{route('show-product', ['slug' => $product->slug])}}" class="btn btn-sm btn-outline-secondary">Ver
+                        mas...</a>
                     <button type="button" class="btn btn-sm btn-primary"><i class="bi bi-cart-plus"
                             alt="Añadir al carrito"></i></button>
                 </div>
