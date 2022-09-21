@@ -10,20 +10,26 @@
              'icon' => 'bi bi-plus-square',
              'url' => route('create-product'),
          ],
+         'Porduct List' => [
+             'text' => 'Lista de Productos',
+             'icon' => 'bi bi-square',
+             'url' => route('list-product'),
+         ],
+
          'Usuario' => [
              'text' => 'Portada',
              'icon' => 'bi bi-shop',
              'url' => route('store'),
          ],
          'Categoria' => [
-            'text' => 'Nueva Categoría',
-            'icon' => 'bi bi-inboxes',
-            'url' => route('new-category'),
+             'text' => 'Nueva Categoría',
+             'icon' => 'bi bi-inboxes',
+             'url' => route('new-category'),
          ],
          'Etiquetas' => [
-            'text' => 'Nueva Etiqueta',
-            'icon' => 'bi bi-journal-code',
-            'url' => route('new-tag'),
+             'text' => 'Nueva Etiqueta',
+             'icon' => 'bi bi-journal-code',
+             'url' => route('new-tag'),
          ],
      ];
  @endphp

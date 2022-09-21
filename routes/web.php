@@ -41,9 +41,12 @@ Route::get('/admin', function () {
 
 Route::get('/admin/new-product', [ProductController::class, 'new_form'])->name('new-product-form');
 Route::post('/admin/new-product', [ProductController::class, 'create'])->name('create-product');
+Route::get('/admin/product-list', [ProductController::class, 'list'])->name('list-product');
 
 Route::get('/admin/new-category', [CategoryController::class, 'new_form_cat'])->name('new-category');
 Route::post('/admin/new-category', [CategoryController::class, 'create_cat'])->name('create-category');
+Route::get('/admin/categories-list', [CategoryController::class, 'list_category'])->name('list-categories');
 
 Route::get('/admin/new-tag', [TagController::class, 'new_form_tag'])->name('new-tag');
 Route::post('/admin/new-tag', [TagController::class, 'create_tag'])->name('create-tag');
+Route::get('/admin/tags-list', [TagController::class, 'list_tags'])->name('list-tags');
