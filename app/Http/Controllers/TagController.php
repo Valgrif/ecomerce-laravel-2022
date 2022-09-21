@@ -15,7 +15,7 @@ class TagController extends Controller
 
     public function create_tag(Request $request){
         $validated = $request->validate([
-            'name' => "required|max:255",
+            'name' => "required|max:255|unique:tags,name",
         ]);
 
         $validated['slug'] = Str::slug($validated['name']);

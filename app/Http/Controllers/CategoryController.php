@@ -15,7 +15,7 @@ class CategoryController extends Controller
 
     public function create_cat(Request $request){
         $validated = $request->validate([
-            'name' => "required|max:255|unique",
+            'name' => "required|max:255|unique:categories,name",
         ]);
 
         $validated['slug'] = Str::slug($validated['name']);
