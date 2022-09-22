@@ -3,8 +3,8 @@
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\TagController;
+use App\Http\Controllers\StoreController;
 use Illuminate\Support\Facades\Route;
-use App\Models\Product;
 
 /*
 |--------------------------------------------------------------------------
@@ -17,14 +17,10 @@ use App\Models\Product;
 |
 */
 
-Route::get('/', function () {
-    return view('public.front-page', [
-        'products' => Product::all(),
-    ]);
-})->name('store');
+Route::get('/', [StoreController::class, 'front_page'])->name('store');
 
 Route::get('/dashboard', function () {
-    return view('dashboard');
+    return redirect(route('store'));
 })->middleware(['auth'])->name('dashboard');
 
 require __DIR__ . '/auth.php';

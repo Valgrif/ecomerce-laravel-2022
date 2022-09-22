@@ -80,6 +80,7 @@ class DatabaseSeeder extends Seeder
             for ($i = 0; $i < $order_amount; $i++) {
                 $order = \App\Models\Order::factory()->create([
                     'user_id' => $client->id,
+                    'status' => "processing"
                 ]);
 
                 $products = \App\Models\Product::inRandomOrder()->limit(random_int(1,10))->get(); //Insertar cantidad aleatoria de productos en las ordenes
