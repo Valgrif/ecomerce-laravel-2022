@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Category;
 use App\Models\Tag;
 use App\Models\Product;
+use App\Models\Order;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
 
@@ -47,22 +48,69 @@ class ProductController extends Controller
         return redirect(route('admin-page'));
     }
 
-    public function show($slug){
+    public function show($slug)
+    {
+        $user = auth()->user();
+
+        if ($user != null) {
+            $cart = $user->orders
+                ->sortByDesc('created_at')
+                ->firstWhere('status', 'cart');
+
+            if ($cart == null) {
+                $cart = Order::create([
+                    'user_id' => $user->id,
+                    'total_price' => 0,
+                    'delivery_address' => "",
+                    'status' => "cart",
+                ]);
+            }
+        } else {
+            $cart = null;
+        }
+
         $product = Product::where('slug', $slug)->get()->firstOrFail();
         $related_products = $product->category->products
             ->where('id', '!=', $product->id)
             ->shuffle()
             ->take(3);  //shufle para "barajarlos" y sacar aleatorios
 
-        return view ('public.single-product',[
+        return view('public.single-product', [
             "product" => $product,
             "related_products" => $related_products,
+            "cart" => $cart,
         ]);
     }
 
-    public function list(Request $request){
+    public function list(Request $request)
+    {
         return view('admin.product-list', [
             "products" => Product::all(),
+
         ]);
+    }
+
+    public function add($id)
+    {
+        $user = auth()->user();
+        if ($user != null) {
+            $cart = $user->orders
+                ->sortByDesc('created_at')
+                ->firstWhere('status', 'cart');
+            if ($cart == null) {
+                $cart = Order::create([
+                    'user_id' => $user->id,
+                    'total_price' => 0,
+                    'delivery_address' => "",
+                    'status' => "cart",
+                ]);
+            }
+        } else {
+            $cart = null;
+        }
+        $cart->products()->attach($id, ['units' => 1]);
+        $cart->total_price += Product::find($id)->price;
+        $cart->save();
+        return redirect(route('store'));
     }
 }

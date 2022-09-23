@@ -18,6 +18,7 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', [StoreController::class, 'front_page'])->name('store');
+Route::get('/checkout', [StoreController::class, 'chekout_page'])->name('checkout');
 
 Route::get('/dashboard', function () {
     return redirect(route('store'));
@@ -28,6 +29,7 @@ require __DIR__ . '/auth.php';
 //---------------- ROUTES PUBLIC ----------------------------------------------------------------/
 
 Route::get('/product/{slug}', [ProductController::class, 'show'])->name('show-product');
+Route::post('/product/add/{id}', [ProductController::class,'add'])->name('add-product-cart');
 
 //---------------- ROUTES ADMIN INTERFACE -------------------------------------------------------/
 

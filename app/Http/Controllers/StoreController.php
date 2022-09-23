@@ -5,10 +5,6 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Order;
 use App\Models\Product;
-use App\Models\Category;
-use App\Models\Tag;
-use App\Models\Role;
-use App\Models\User;
 
 class StoreController extends Controller
 {
@@ -36,6 +32,13 @@ class StoreController extends Controller
         return view('public.front-page', [
             'products' => Product::all(),
             'cart' => $cart,
+        ]);
+    }
+
+    public function checkout_page(Request $request){
+
+        return view('public.checkout-page', [
+            "cart" => ""
         ]);
     }
 }
