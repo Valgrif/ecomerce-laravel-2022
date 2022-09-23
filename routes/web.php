@@ -50,3 +50,5 @@ Route::get('/admin/categories-list', [CategoryController::class, 'list_category'
 Route::get('/admin/new-tag', [TagController::class, 'new_form_tag'])->name('new-tag');
 Route::post('/admin/new-tag', [TagController::class, 'create_tag'])->name('create-tag');
 Route::get('/admin/tags-list', [TagController::class, 'list_tags'])->name('list-tags');
+
+Route::get('/admin/orders', [OrderController::class, 'list_orders'])->name('list-orders');

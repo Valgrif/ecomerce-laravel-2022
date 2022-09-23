@@ -31,6 +31,11 @@
              'icon' => 'bi bi-journal-code',
              'url' => route('new-tag'),
          ],
+         'Pedidos' => [
+             'text' => 'Lista Pedidos',
+             'icon' => 'bi bi-journal',
+             'url' => route('list-orders'),
+         ],
      ];
  @endphp
 

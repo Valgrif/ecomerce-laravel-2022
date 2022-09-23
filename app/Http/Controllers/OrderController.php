@@ -3,10 +3,12 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\Order;
 
 class OrderController extends Controller
 {
-    public function cart_to_processing (Request $request){
+    public function cart_to_processing(Request $request)
+    {
         $validated = $request->validate([
             "address" => "required",
             "address2" => "",
@@ -28,5 +30,29 @@ class OrderController extends Controller
         $cart->save();
 
         return redirect(route('store'));
+    }
+
+    public function processing_to_sent(Request $request){
+        $validated = $request->validate([
+            "id" => "required|exists::ordes,id",
+            "tracking" => "required",
+        ]);
+
+        $order = Order::find($validated['id']);
+        $order->traking_number = $validated['traking'];
+        $order->status = "sent";
+        $order->save();
+
+        return redirect(route('list-orders'));
+    }
+
+    public function list_orders(Request $request)
+    {
+        return view('admin.orders-page', [
+            "carts" => Order::where('status','cart')->get(),
+            "processing" => Order::where('status','processing')->get(),
+            "sent" => Order::where('status','sent')->get()
+
+        ]);
     }
 }
