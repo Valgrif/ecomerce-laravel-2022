@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\CategoryController;
+use App\Http\Controllers\OrderController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\TagController;
 use App\Http\Controllers\StoreController;
@@ -18,7 +19,8 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', [StoreController::class, 'front_page'])->name('store');
-Route::get('/checkout', [StoreController::class, 'chekout_page'])->name('checkout');
+Route::get('/checkout', [StoreController::class, 'checkout_page'])->name('checkout');
+Route::post('/checkout', [OrderController::class, 'cart_to_processing'])->name('process-checkout');
 
 Route::get('/dashboard', function () {
     return redirect(route('store'));
