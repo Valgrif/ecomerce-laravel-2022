@@ -34,7 +34,7 @@ class OrderController extends Controller
 
     public function processing_to_sent(Request $request){
         $validated = $request->validate([
-            "id" => "required|exists::ordes,id",
+            "id" => "required|exists:orders,id",
             "tracking" => "required",
         ]);
 
@@ -43,7 +43,7 @@ class OrderController extends Controller
         $order->status = "sent";
         $order->save();
 
-        return redirect(route('list-orders'));
+        return redirect(route('list-order'));
     }
 
     public function list_orders(Request $request)

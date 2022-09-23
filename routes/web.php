@@ -52,3 +52,4 @@ Route::post('/admin/new-tag', [TagController::class, 'create_tag'])->name('creat
 Route::get('/admin/tags-list', [TagController::class, 'list_tags'])->name('list-tags');
 
 Route::get('/admin/orders', [OrderController::class, 'list_orders'])->name('list-orders');
+Route::post('admin/order/sent', [OrderController::class, 'processing_to_sent'])->name('list-sent');

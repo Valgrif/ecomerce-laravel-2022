@@ -50,7 +50,7 @@
                     </div>
                     <hr>
                     @foreach ($processing as $order)
-                        <form action="" method="post">
+                        <form action="{{route('list-sent')}}" method="post">
                             @csrf
                             <input type="hidden" name="id" value="{{$order->id}}">
                             <div class="row mb-2">
