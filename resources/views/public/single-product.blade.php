@@ -1,5 +1,5 @@
 <x-layout>
-    <x-layout-public :cart="$cart">
+    <x-layout-public>
         <h3 class="text-muted">{{$product->category->name}}</h3>
         <div class="row">
             <div class="col-12 col-md-4">

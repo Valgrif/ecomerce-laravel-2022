@@ -5,13 +5,12 @@ namespace App\Http\Controllers;
 use App\Models\Category;
 use App\Models\Tag;
 use App\Models\Product;
-use App\Models\Order;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
 
 class ProductController extends Controller
 {
-    public function new_form(Request $request)
+    public function new_form()
     {
         return view('admin.new-product-form', [
             "categories" => Category::all(),
@@ -50,25 +49,6 @@ class ProductController extends Controller
 
     public function show($slug)
     {
-        $user = auth()->user();
-
-        if ($user != null) {
-            $cart = $user->orders
-                ->sortByDesc('created_at')
-                ->firstWhere('status', 'cart');
-
-            if ($cart == null) {
-                $cart = Order::create([
-                    'user_id' => $user->id,
-                    'total_price' => 0,
-                    'delivery_address' => "",
-                    'status' => "cart",
-                ]);
-            }
-        } else {
-            $cart = null;
-        }
-
         $product = Product::where('slug', $slug)->get()->firstOrFail();
         $related_products = $product->category->products
             ->where('id', '!=', $product->id)
@@ -78,36 +58,19 @@ class ProductController extends Controller
         return view('public.single-product', [
             "product" => $product,
             "related_products" => $related_products,
-            "cart" => $cart,
         ]);
     }
 
-    public function list(Request $request)
+    public function list()
     {
         return view('admin.product-list', [
             "products" => Product::all(),
-
         ]);
     }
 
     public function add($id)
     {
-        $user = auth()->user();
-        if ($user != null) {
-            $cart = $user->orders
-                ->sortByDesc('created_at')
-                ->firstWhere('status', 'cart');
-            if ($cart == null) {
-                $cart = Order::create([
-                    'user_id' => $user->id,
-                    'total_price' => 0,
-                    'delivery_address' => "",
-                    'status' => "cart",
-                ]);
-            }
-        } else {
-            $cart = null;
-        }
+        $cart = get_cart();
         $cart->products()->attach($id, ['units' => 1]);
         $cart->total_price += Product::find($id)->price;
         $cart->save();
