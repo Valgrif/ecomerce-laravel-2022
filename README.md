@@ -1,5 +1,9 @@
 # Ecommerce con Laravel
 
+INSTALAR CASHIER para cobros
+INSTALAR Dusl para testing
+Instalar Echo para un chat online
+
 Se trata de una aplicacion web para una tienda online. Entre otras características debería tener:
 
 - Listado de productos.
