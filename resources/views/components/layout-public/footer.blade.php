@@ -36,7 +36,7 @@
 
         <div class="col-md-5 offset-md-1 mb-3">
           <form>
-            <h5>Subscribete para recibir nuestras novedades :)</h5>
+            <h5>Subscribete para recibir nuestras novedades :</h5>
             <p>Monthly digest of what's new and exciting from us.</p>
             <div class="d-flex flex-column flex-sm-row w-100 gap-2">
               <label for="newsletter1" class="visually-hidden">Correo Electrónico</label>
